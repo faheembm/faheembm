@@ -2,11 +2,21 @@
 
 *, *::before, *::after{ margin:0; padding:0; box-sizing:border-box; }
 
+/* ---------------- ROOT ---------------- */
+
+:root{
+
+--bg:#0a0a0a; --text:#e6e6e6; --muted:#7a7a7a; --line:#1c1c1c;
+
+--accent:#9fb0ff;
+
+}
+
 /* ---------------- BASE ---------------- */
 
 body{
 
-background:#0a0a0a; color:#e6e6e6;
+background:var(--bg); color:var(--text);
 
 font-family:"JetBrains Mono", monospace;
 
@@ -16,87 +26,173 @@ padding:80px 24px;
 
 }
 
-.container{
+/* ---------------- LAYOUT ---------------- */
 
-max-width:900px; margin:0 auto;
+.layout{
 
-display:flex; flex-direction:column; gap:80px;
+display:grid;
+
+grid-template-columns: 1fr minmax(0,780px) 1fr;
+
+}
+
+.content{
+
+grid-column:2;
+
+display:flex; flex-direction:column;
+
+gap:80px;
 
 }
 
 /* ---------------- HERO ---------------- */
 
-.hero-grid{
-
-display:grid; grid-template-columns:1fr 1fr; gap:40px;
-
-}
-
 .hero h1{
 
-font-size:36px; font-weight:500; letter-spacing:-0.02em;
+font-family:"Inter",sans-serif;
+
+font-size:36px; font-weight:600;
+
+letter-spacing:-0.02em;
 
 }
 
 .tagline{
 
-margin-top:8px; color:#888; font-size:14px;
+margin-top:8px;
 
-}
+color:var(--muted);
 
-.hero-right{
-
-color:#b0b0b0; font-size:14px;
+font-size:14px;
 
 }
 
 /* ---------------- SECTIONS ---------------- */
 
+section{
+
+border-top:1px solid var(--line);
+
+padding-top:60px;
+
+}
+
 h2{
 
-font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:#555; margin-bottom:24px;
+font-size:11px;
+
+letter-spacing:.18em;
+
+text-transform:uppercase;
+
+color:#555;
+
+margin-bottom:28px;
 
 }
 
-/* ---------------- STORY GRID ---------------- */
+/* ---------------- STORY ---------------- */
 
-.grid-two{
+.story-grid{
 
-display:grid; grid-template-columns:1fr 1fr; gap:32px;
+display:grid;
 
-color:#b0b0b0; font-size:14px;
+grid-template-columns:2fr 1fr;
 
-}
-
-.grid-two a{
-
-color:#ffffff; text-decoration:none; border-bottom:1px solid #333;
+gap:40px;
 
 }
 
-.grid-two a:hover{
+.story-main{
 
-border-color:#777;
+display:flex; flex-direction:column;
 
-}
-
-/* ---------------- INFO GRID ---------------- */
-
-.info-grid{
-
-display:grid; grid-template-columns:1fr 1fr; gap:32px;
-
-}
-
-.label{
-
-display:block; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#666; margin-bottom:4px;
-
-}
-
-.info-grid p{
+gap:18px;
 
 font-size:14px; color:#b0b0b0;
+
+}
+
+.story-main a{
+
+color:var(--accent);
+
+text-decoration:none;
+
+border-bottom:1px solid transparent;
+
+}
+
+.story-main a:hover{
+
+border-color:var(--accent);
+
+}
+
+/* ---------------- NOTE ---------------- */
+
+.note{
+
+border-left:2px solid #333;
+
+padding-left:18px;
+
+font-size:13px;
+
+color:#999;
+
+}
+
+.note span{
+
+display:block;
+
+font-size:11px;
+
+letter-spacing:.12em;
+
+color:#666;
+
+margin-bottom:6px;
+
+text-transform:uppercase;
+
+}
+
+/* ---------------- SYSTEMS GRID ---------------- */
+
+.systems-grid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:36px;
+
+}
+
+.systems-grid span{
+
+display:block;
+
+font-size:11px;
+
+letter-spacing:.14em;
+
+text-transform:uppercase;
+
+color:#666;
+
+margin-bottom:4px;
+
+}
+
+.systems-grid p{
+
+font-size:14px;
+
+color:#b0b0b0;
 
 }
 
@@ -104,13 +200,23 @@ font-size:14px; color:#b0b0b0;
 
 .links{
 
-display:flex; flex-direction:column; gap:12px;
+display:flex; flex-direction:column;
+
+gap:12px;
 
 }
 
 .links a{
 
-color:#9a9a9a; text-decoration:none; font-size:14px;
+font-size:14px;
+
+color:#9a9a9a;
+
+text-decoration:none;
+
+border-bottom:1px solid transparent;
+
+width:max-content;
 
 }
 
@@ -118,13 +224,19 @@ color:#9a9a9a; text-decoration:none; font-size:14px;
 
 color:#ffffff;
 
+border-color:#444;
+
 }
 
 /* ---------------- FOOTER ---------------- */
 
 footer{
 
-margin-top:20px; font-size:12px; color:#555;
+margin-top:20px;
+
+font-size:12px;
+
+color:#555;
 
 }
 
@@ -132,10 +244,12 @@ margin-top:20px; font-size:12px; color:#555;
 
 @media(max-width:720px){
 
-.hero-grid{ grid-template-columns:1fr; }
+.story-grid{ grid-template-columns:1fr; }
 
-.grid-two{ grid-template-columns:1fr; }
+.systems-grid{ grid-template-columns:1fr; }
 
-.info-grid{ grid-template-columns:1fr; }
+body{ padding:60px 20px; }
+
+.hero h1{ font-size:28px; }
 
 }
